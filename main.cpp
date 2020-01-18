@@ -7,11 +7,14 @@
 struct Particle
 {
     double charge, mass;
-    std::vector<double, 2> position;
-    std::vector<double, 2> velocity;
+    std::array<double, 2> position;
+    std::array<double, 2> velocity;
 
-    Particle(double c, double m, std::vector<double, 2> pos, std::vector<double, 2> vel)
+    Particle(double c, double m, std::array<double, 2> pos, std::array<double, 2> vel)
     {
+	// The reason that the pos and vel parameters are arrays instead of multiple
+	// args each is that changing the dimension of the simulation is possible
+	// without complicated overloading
         charge = c;
 	mass = m;
         position = pos;
@@ -22,9 +25,9 @@ struct Particle
 // We need the vapor particles to be polarizable, as well as having a charge
 struct PolarParticle : public Particle
 {
-    std::vector<double, 2> dipole_moment;
+    std::array<double, 2> dipole_moment;
 
-    PolarParticle(std::vector<double, 2> dipole) : dipole_moment{dipole}
+    PolarParticle(std::array<double, 2> dipole) : dipole_moment{dipole}
 };
 
 class Simulation
