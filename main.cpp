@@ -2,7 +2,9 @@
 // Created by Liam Clink on 2020-01-10.
 //
 
+#include <array>
 #include <vector>
+#include <iostream>
 
 struct Particle
 {
@@ -27,7 +29,8 @@ struct PolarParticle : public Particle
 {
     std::array<double, 2> dipole_moment;
 
-    PolarParticle(std::array<double, 2> dipole) : dipole_moment{dipole}
+    PolarParticle(double c, double m, std::array<double, 2> pos, std::array<double, 2> vel, std::array<double, 2> dipole) : Particle(c, m, pos, vel), dipole_moment{dipole}
+    {};
 };
 
 class Simulation
@@ -41,10 +44,11 @@ class Simulation
 	std::vector<Particle> ions;
 	std::vector<Particle> electrons;
 	std::vector<PolarParticle> vapor;
-}
+};
 
 int main()
 {
-
+    std::cout << "test\n";
+    std::cin.get();
     return 0;
 }
